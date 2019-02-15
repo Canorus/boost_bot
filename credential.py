@@ -2,7 +2,6 @@ import requests
 import json
 import os
 
-
 def register(instance):
     client_name = 'commandline timeline'
     instance = instance
@@ -92,10 +91,10 @@ def register(instance):
 def retrieve(username, instance):
     import os
     global access_token
+    if instance[:5] != 'https':
+        instance = 'https://'+instance
     with open('cred.json') as f:
         cred = json.load(f)
-    if instance[:5] != 'https:':
-        instance = 'https://'+instance
     for i in cred:
         if instance == i[0]['instance']:
             for k in i:
